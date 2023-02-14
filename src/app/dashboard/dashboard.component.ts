@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import {MatDialog} from '@angular/material/dialog';
+import { HeroSearchComponent } from '../hero-search/hero-search.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +12,7 @@ import { HeroService } from '../hero.service';
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getHeroes();
@@ -19,5 +21,11 @@ export class DashboardComponent implements OnInit {
   getHeroes(): void {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+  }
+  onOpenDialogClick(){
+    this.matDialog.open(HeroSearchComponent,{
+      height: '400px',
+      width: '600px',
+    });
   }
 }

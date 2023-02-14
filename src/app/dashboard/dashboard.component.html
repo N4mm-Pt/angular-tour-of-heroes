@@ -1,4 +1,5 @@
 <h2>Top Heroes</h2>
+<button (click)="onOpenDialogClick()">Search</button>
 <div class="heroes-menu">
   <a *ngFor="let hero of heroes"
       routerLink="/detail/{{hero.id}}">
@@ -6,4 +7,3 @@
   </a>
 </div>
 
-<app-hero-search></app-hero-search>
